@@ -12,7 +12,7 @@ Aplikasi backend modern menggunakan **Laravel 10**, **Filament 3**, dan **API To
 
 # 🔧 Requirements
 
-````python
+``
 # Minimum system requirements
 PHP >= 8.1
 Composer
@@ -25,12 +25,12 @@ Web Server (Apache / Nginx / Laravel Sail / Valet)
 
 ---
 
-```markdown
+``
 # 🚀 Local Installation (Notebook Style)
 
 Ikuti perintah berikut seperti menjalankan "cell" python:
 
-```python
+``
 # Clone repository
 ! git clone https://github.com/AbiyaMakruf/belajar_mabrur_BE_v2.git
 
@@ -73,10 +73,10 @@ API_KEY="your_api_key"
 
 ---
 
-```markdown
+``
 # 🖥️ Filament Admin Dashboard
 
-```python
+``
 # Main dashboard URL
 http://localhost:8000/admin
 
@@ -94,12 +94,12 @@ Dashboard menyediakan:
 
 ---
 
-```markdown
+``
 # 🔑 API Authentication
 
 Semua request API menggunakan header berikut:
 
-```python
+``
 headers = {
     "X-API-KEY": "your_api_key",
     "Accept": "application/json"
@@ -118,10 +118,10 @@ Authorization: Bearer {token}
 
 ---
 
-```markdown
+``
 # 📂 Project Structure
 
-```python
+``
 belajar_mabrur_BE_v2/
 │
 ├── app/
@@ -142,4 +142,4 @@ belajar_mabrur_BE_v2/
 │   ├── api.php
 │   ├── web.php
 
-````
+``
