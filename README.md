@@ -1,66 +1,145 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🎓 Belajar Mabrur BE v2 – Backend Platform & Admin Dashboard
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi backend modern menggunakan **Laravel 10**, **Filament 3**, dan **API Token**, dirancang untuk:
 
-## About Laravel
+-   Manajemen konten (Ihram, Sa’i, Tawaf, Tahallul)
+-   Sistem autentikasi aman (API Key + Token)
+-   Dashboard analitik real-time (User Growth, User Active)
+-   Daily Activity Log (DAU/WAU/MAU)
+-   Manajemen pengguna (admin, host, user)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# 🔧 Requirements
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+````python
+# Minimum system requirements
+PHP >= 8.1
+Composer
+Node.js + NPM / Yarn
+MySQL / MariaDB
+Git
+Web Server (Apache / Nginx / Laravel Sail / Valet)
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```markdown
+# 🚀 Local Installation (Notebook Style)
 
-## Laravel Sponsors
+Ikuti perintah berikut seperti menjalankan "cell" python:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```python
+# Clone repository
+! git clone https://github.com/AbiyaMakruf/belajar_mabrur_BE_v2.git
 
-### Premium Partners
+# Masuk ke folder project
+! cd belajar_mabrur_BE_v2
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+# Install dependencies backend
+! composer install
 
-## Contributing
+# Install dependencies frontend (Filament assets)
+! npm install
+! npm run dev
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Copy environment file
+! cp .env.example .env
 
-## Code of Conduct
+# Generate key aplikasi
+! php artisan key:generate
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Edit file .env
+DB_DATABASE=belajar_mabrur
+DB_USERNAME=root
+DB_PASSWORD=
 
-## Security Vulnerabilities
+APP_TIMEZONE=Asia/Jakarta
+SESSION_LIFETIME=30
+API_KEY="your_api_key"
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Jalankan migrasi dan seeder
+! php artisan migrate --seed
 
-## License
+# Link storage untuk file media
+! php artisan storage:link
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Jalankan server lokal
+! php artisan serve
+
+
+
+
+---
+
+```markdown
+# 🖥️ Filament Admin Dashboard
+
+```python
+# Main dashboard URL
+http://localhost:8000/admin
+
+
+username = "admin"
+password = "12345678"
+
+Dashboard menyediakan:
+📈 User Growth (7 / 30 / 365 hari)
+🔥 User Active (DAU / WAU / MAU)
+👥 Total Registered Users
+📊 Activity Log
+📘 Content Overview
+
+
+---
+
+```markdown
+# 🔑 API Authentication
+
+Semua request API menggunakan header berikut:
+
+```python
+headers = {
+    "X-API-KEY": "your_api_key",
+    "Accept": "application/json"
+}
+
+POST /api/login
+
+payload = {
+    "username": "admin",
+    "password": "12345678"
+}
+
+Authorization: Bearer {token}
+
+
+
+---
+
+```markdown
+# 📂 Project Structure
+
+```python
+belajar_mabrur_BE_v2/
+│
+├── app/
+│   ├── Filament/
+│   │   ├── Widgets/       # Dashboard widgets (growth, active)
+│   │   ├── Pages/         # Dashboard page
+│   ├── Http/
+│   │   ├── Controllers/API
+│   ├── Models/
+│   │   ├── UserDailyActivity.py
+│
+├── database/
+│   ├── migrations/
+│   ├── seeders/
+│   ├── data/              # JSON content (Ihram, Sai, Tawaf, Tahallul)
+│
+├── routes/
+│   ├── api.php
+│   ├── web.php
+
+````
