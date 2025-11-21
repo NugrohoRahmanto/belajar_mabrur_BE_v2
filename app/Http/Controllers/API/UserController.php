@@ -172,4 +172,6 @@ class UserController extends Controller
 
         return $user;
     }
+    // End of class
+
 }
