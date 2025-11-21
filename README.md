@@ -1,8 +1,5 @@
 
-# ║           BELAJAR MABRUR BE v2          ║
-# ║    Backend Platform & Admin Dashboard   ║
-# ╚═════════════════════════════════════════╝
-
+#           BELAJAR MABRUR BE v2          
 
 Belajar Mabrur BE v2 is a modern backend platform built with **Laravel 10**,  
 **Filament 3**, and **Token-Based API Authentication**, designed to support  
@@ -78,37 +75,6 @@ The system includes default seeded users:
 | User  | `` user ``  | `` 12345678 `` |
 
 These accounts are created automatically using database seeders.
-
----
-
-# 📂 Project Structure
-
-belajar_mabrur_BE_v2/
-│
-├── app/
-│ ├── Filament/
-│ │ ├── Widgets/ # Analytics & dashboard widgets
-│ │ ├── Pages/ # Dashboard main page
-│ ├── Http/
-│ │ ├── Controllers/API # User, Auth, Content APIs
-│ ├── Models/
-│ ├── User.php
-│ ├── UserDailyActivity.php
-│
-├── database/
-│ ├── migrations/ # Table schema definitions
-│ ├── seeders/ # Content + user seeders
-│ ├── data/ # JSON content sources
-│
-├── routes/
-│ ├── api.php # API routes
-│ ├── web.php # Web routes
-│
-├── public/
-├── resources/
-├── storage/
-└── README.md
-
 
 ---
 
