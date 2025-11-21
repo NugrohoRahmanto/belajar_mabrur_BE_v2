@@ -1,7 +1,7 @@
-# ╔══════════════════════════════════════════╗
-# ║           BELAJAR MABRUR BE v2           ║
-# ║    Backend Platform & Admin Dashboard    ║
-# ╚══════════════════════════════════════════╝
+# ╔═════════════════════════════════════════╗
+# ║           BELAJAR MABRUR BE v2          ║
+# ║    Backend Platform & Admin Dashboard   ║
+# ╚═════════════════════════════════════════╝
 
 
 Belajar Mabrur BE v2 is a modern backend platform built with **Laravel 10**,  
