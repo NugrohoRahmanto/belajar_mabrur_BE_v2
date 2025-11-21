@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Ihram/Niat Umrah dari Miqat",
+    "category": "Ihram",
+    "arabic": "لَبَّيْكَ اللَّهُمَّ عُمْرَةً",
+    "latin": "Labbaikallaahumma 'umratan",
+    "translate_id": "Ya Allah, aku penuhi panggilan-Mu untuk umrah.",
+    "description": "Niat ini diucapkan ketika seorang jamaah memulai ibadah umrah dari tempat miqat (tempat yang telah ditentukan untuk memulai niat ihram). Niat ini menandai dimulainya rangkaian ibadah umrah sebagai bentuk pemenuhan panggilan Allah."
+  },
+  {
+    "name": "Doa Sesudah Berihram",
+    "category": "Ihram",
+    "arabic": "اللهُمَّ أُحَرِّمُ شَعْرِي وَبَشَرِيْ وَ جَسَدِي وَ جَمِيعَ جَوَارِحِيْ مِنْ كُلِّ شَيْءٍ حَرَّمْتَهُ عَلَى الْمُحْرِمِ ابْتَغِي بِذَلِكَ وَجْهَكَ الْكَرِيمَ يَارَبَّ الْعَالَمِينَ",
+    "latin": "Allaahumma uharrimu sya'rii wa basyarii wa jasadii wa jamii'a jawaarihii min kulli syai`in harramtahu alal-muhrimi abtaghii bidzaalika wajhakal-kariima yaa rabbal 'aalamiin.",
+    "translate_id": "Ya Allah, aku haramkan rambut, kulit, tubuh, dan seluruh anggota tubuhku dari semua yang Engkau haramkan bagi seorang yang sedang berihram, demi mengharapkan Diri-Mu semata, wahai Tuhan Pemelihara alam semesta.",
+    "description": "Doa ini diucapkan setelah seorang jamaah mengenakan pakaian ihram. Dengan doa ini, jamaah meminta perlindungan Allah dari segala hal yang haram bagi orang yang sedang berihram dan mengharap ridha Allah untuk melaksanakan ibadah umrah atau haji."
+  },
+  {
+    "name": "Talbiyah",
+    "category": "Ihram",
+    "arabic": "لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ لَا شَرِيكَ لَكَ",
+    "latin": "Labbaikallaahumma labbaiik. Labbaika laa syariika laka labbaiik. Innal-hamda wan-ni'mata laka wal mulk, laa syariika lak.",
+    "translate_id": "Ya Allah, aku datang memenuhi panggilan-Mu. Tidak ada sekutu bagi-Mu. Ya Allah, aku datang memenuhi panggilan-Mu. Sungguh, segala puji, kenikmatan, dan kekuasaan adalah milik-Mu. Ya Allah, tidak ada sekutu bagi-Mu.",
+    "description": "Talbiyah adalah kalimat pujian dan penyataan kesiapan seorang jamaah untuk memenuhi panggilan Allah. Kalimat ini diucapkan selama perjalanan menuju Ka'bah sebagai tanda kesungguhan dalam beribadah kepada Allah."
+  },
+  {
+    "name": "Doa Masuk Kota Mekkah",
+    "category": "Ihram",
+    "arabic": "اللهُمَّ هُذَا حَرَمُكَ وَأَمْنُكَ فَحَرِّمْ لَحْمِي وَدَمِيْ وَ شَعْرِي وَبَشَرِي عَلَى النَّارِ وَامِنِي مِنْ عَذَابِكَ يَوْمَ تَبْعَثُ عِبَادَكَ وَاجْعَلْنِي مِنْ أَوْلِيَائِكَ وَأَهْلِ طَاعَتِكَ",
+    "latin": "Allaahumma haadzaa haramuka wa amnuka, faharrim lahmii wa damii, wa sya'rii, wa basyarii, alan-naar, wa aaminnii min 'adzaabika yauma tab'atsu 'ibaadaka waj'alnii min auliyaa-ika wa ahli tha'atika.",
+    "translate_id": "Ya Allah, kota ini tanah Haram-Mu dan tempat yang paling aman. Maka, hindarkanlah daging, darah, bulu,  dan kulitku dari neraka. Amankanlah aku dari siksa-Mu pada hari Engkau membangkitkan kembali hamba-Mu dan jadikanlah aku dari wakil-Mu yang ahli taat kepada-Mu.",
+    "description": "Doa ini dibaca saat seorang jamaah memasuki kota Mekkah. Doa ini meminta perlindungan dari Allah agar dijauhkan dari siksa neraka dan dimasukkan ke dalam golongan hamba-hamba yang taat kepada-Nya, serta mengharapkan keselamatan di hari kiamat."
+  },
+  {
+    "name": "Doa Masuk Masjid",
+    "category": "Ihram",
+    "arabic": "بِسْمِ اللهِ وَالسَّلَامُ عَلَى رَسُوْلِ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ اللَّهُمَّ اغْفِرْ لِي ذَنْبِي وَافْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",
+    "latin": "Bismillaahi was-salaamu alaa rasuulillaah shallallaahu alaihi wa sallam. Allaahummaghfir lii dzunuubii waftah lii abwaaba rahmatika.",
+    "translate_id": "Dengan nama Allah dan salam kepada Rasulullah saw. Ya Allah, ampuni dosa-dosaku dan bukakanlah pintu pintu rahmat-Mu.",
+    "description": "Doa ini diucapkan saat memasuki masjid, termasuk Masjidil Haram. Jamaah memohon ampunan dosa dan pintu rahmat Allah agar terbuka, serta meminta kedamaian dan keselamatan atas dirinya."
+  },
+  {
+    "name": "Doa Masuk Masjidil Haram",
+    "category": "Ihram",
+    "arabic": "اللَّهُمَّ أَنْتَ السَّلاَمُ وَمِنْكَ السَّلاَمُ وَإِلَيْكَ يَعُودُ السَّلاَمُ فَحَيِّنَا رَبَّنَا بِالسَّلاَمِ وَأَدْخِلْنَا الْجَنَّةَ دَارَ السَّلاَمِ تَبَارَكْتَ رَبَّنَا وَتَعَالَيْتَ يَا ذَا الْجَلاَلِ وَالْإكْرَامِ اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ وَمَغْفِرَتِكَ وَادْخِلْنِي فِيهَا",
+    "latin": "Allaahumma antas-sallaam wa minkas-sallaam wa ilaika ya’uudus-salaam fahayyinaa rabbanaa bis sallaam wa adkhilnal-jannata daaras-sallaam tabaarakta Rabbana wa ta'aalaita ya dzal-jalaali wal ikraam. Allaahummaftah lii abwaaba rahmatika wa maghfiratika wa adkhilnii fiihaa.",
+    "translate_id": "Ya Allah, Engkaulah sumber keselamatan, dan dari Mu-lah datangnya keselamatan itu semua. Maka,  sambutlah kami, wahai Tuhan dengan selamat sejahtera dan masukkanlah kami ke dalam surga negeri-Mu yang bahagia. Maha Pemberi berkah dan Mahatinggilah Engkau, wahai Tuhan Pemilik keagungan dan kemuliaan. Ya Allah, bukalah untukku pintu rahmat-Mu dan ampunan-Mu, dan masukkanlah aku ke dalamnya.",
+    "description": "Doa ini diucapkan saat memasuki Masjidil Haram. Jamaah memohon keselamatan, kedamaian, dan pintu rahmat Allah dibuka, serta memohon agar dimasukkan ke dalam surga, rumah kedamaian, dengan anugerah-Nya."
+  },
+  {
+    "name": "Doa Melihat Ka'bah",
+    "category": "Ihram",
+    "arabic": "اللَّهُمَّ زِدْ هَذَا الْبَيْتَ تَشْرِيفًا وَتَعْظِيمًا وَتَكْرِيمًا وَمُحَبَّةً وَزِدْ مَنْ شَرَّفَهُ وَعَظَّمَهُ وَكَرَّمَهُ مِمَّنْ حَجَّهُ أَوِ اعْتَمَرَهُ تَشْرِيفًا وَتَعْظِيمًا وَتَكْرِيمًا وَبِرًّا",
+    "latin": "Allaahumma zid haadzal-baita tasyriifan wa ta'zhiiman wa takriiman wa mahaabatan wa zid man syarrafahu wa 'azhzhamahu wa karramahu mimman hajjahu awi'tamarahu tasyriifan wa ta'zhiiman wa takriiman wa birran.",
+    "translate_id": "Ya Allah, tambahkanlah kemuliaan, keagungan, kehormatan, dan wibawa pada Bait (Ka'bah) ini. Dan tambahkan pula pada orang-orang yang memuliakan,  mengagungkan, dan menghormatinya di antara mereka yang berhaji atau yang berumrah dengan kemuliaan, keagungan, kehormatan, dan kebaikan.",
+    "description": "Doa ini dibaca saat seorang jamaah pertama kali melihat Ka'bah. Doa ini memohon kepada Allah untuk menambah kemuliaan dan kehormatan bagi Ka'bah, serta bagi mereka yang mengunjunginya dengan tujuan ibadah haji atau umrah."
+  },
+  {
+    "name": "Doa Ke ka Melintasi Maqam Ibrahim",
+    "category": "Ihram",
+    "arabic": "رَبِّ ادْخِلْنِي مُدْخَلَ صِدْقٍ وَأَخْرِجْنِي مُخْرَجَ صِدْقٍ وَاجْعَلْ لِي مِن لَّدُنْكَ سُلْطَانًا نَّصِيرًا وَقُلْ جَآءَ الْحَقُّ وَزَاهَقَ الْبَاطِلُ إِنَّ الْبَاطِلَ كَانَ زَهُوقًا",
+    "latin": "Rabbi adkhilnii mudkhala shidqiw-wa akhrijnii mukhraja shidqiw-waj'al lii mil-ladunka  sulthaanan nashiiran. Wa qul jaa-al-haqqu wa zahaqal-baathilu innal-baathila kaana zahuuqaan.",
+    "translate_id": "Ya Tuhanku, masukkanlah aku secara masuk yang benar, dan keluarkanlah (pula) dengan keluar yang benar, dan berikanlah kepadaku dari sisi-Mu kekuasaan yang menolong. Dan katakanlah, (wahai Muhammad), yang benar telah datang dan yang batil telah lenyap. Sesungguhnya yang batil itu adalah sesuatu yang pasti lenyap.",
+    "description": "Doa ini dibaca saat melintasi Maqam Ibrahim. Jamaah memohon agar Allah memberikan keberkahan, kekuatan, dan pertolongan-Nya, serta memohon agar kebenaran selalu menang dan kebatilan selalu lenyap."
+  }
+]
