@@ -19,7 +19,11 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => [
+        'https://albirr.web.id',
+        'https://www.albirr.web.id',
+        'http://36.50.77.76',
+    ],
 
     'allowed_origins_patterns' => [],
 
