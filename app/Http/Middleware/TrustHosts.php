@@ -15,9 +15,6 @@ class TrustHosts extends Middleware
     {
         return [
             $this->allSubdomainsOfApplicationUrl(),
-            'albirr.web.id',
-            'www.albirr.web.id',
-            '36.50.77.76',
         ];
     }
 }
