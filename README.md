@@ -1,16 +1,23 @@
-# 🎓 Belajar Mabrur BE v2 – Backend Platform & Admin Dashboard
+# ╔════════════════════════════════════════════════════════╗
+# ║                 🌙 BELAJAR MABRUR BE v2                ║
+# ║             Backend Platform & Admin Dashboard         ║
+# ╚════════════════════════════════════════════════════════╝
 
-Aplikasi backend modern menggunakan **Laravel 10**, **Filament 3**, dan **API Token**, dirancang untuk:
+Belajar Mabrur BE v2 is a modern backend platform built with **Laravel 10**,  
+**Filament 3**, and **Token-Based API Authentication**, designed to support  
+the Belajar Mabrur mobile & web ecosystem.
 
--   Manajemen konten (Ihram, Sa’i, Tawaf, Tahallul)
--   Sistem autentikasi aman (API Key + Token)
--   Dashboard analitik real-time (User Growth, User Active)
--   Daily Activity Log (DAU/WAU/MAU)
--   Manajemen pengguna (admin, host, user)
+It provides:
+- Structured Islamic learning content (Ihram, Sa’i, Tawaf, Tahallul)
+- A secure authentication system (API Key + Token)
+- Real-time analytics dashboard (User Growth & User Active)
+- Daily Activity Logging (DAU/WAU/MAU)
+- Multi-role user management: admin, host, standard user
+- Clean, modern admin UI powered by Filament 3
 
 ---
 
-# 🔧 Requirements
+# 🧩 Requirements
 
 ## Minimum system requirements
 - `` PHP >= 8.1 ``
@@ -20,126 +27,98 @@ Aplikasi backend modern menggunakan **Laravel 10**, **Filament 3**, dan **API To
 - `` Git ``
 - `` Web Server (Apache / Nginx / Laravel Sail / Valet) ``
 
+---
 
+# 🚀 Local Installation
 
+- run `` git clone https://github.com/AbiyaMakruf/belajar_mabrur_BE_v2.git ``
+- run `` cd belajar_mabrur_BE_v2 ``
+- run `` composer install ``  
+- run `` npm install ``  
+- run `` npm run dev ``  
+- copy `` .env.example `` to `` .env ``  
+- run `` php artisan key:generate ``  
+- configure your database in `` .env ``  
+- set `` API_KEY="your_api_key" `` inside `` .env ``  
+- run `` php artisan migrate --seed ``  
+- run `` php artisan storage:link ``  
+- run `` php artisan serve ``  
+- then visit `` http://localhost:8000 `` or `` http://127.0.0.1:8000 ``  
 
 ---
 
-``
-# 🚀 Local Installation (Notebook Style)
+# 🖥️ Admin Panel (Filament Dashboard)
 
-Ikuti perintah berikut seperti menjalankan "cell" python:
+Access the admin panel at:  
+`` http://localhost:8000/admin ``
 
-``
-# Clone repository
-! git clone https://github.com/AbiyaMakruf/belajar_mabrur_BE_v2.git
+### Default Admin Credentials (from Seeder)
+- username: `` admin ``
+- password: `` 12345678 ``
 
-# Masuk ke folder project
-! cd belajar_mabrur_BE_v2
-
-# Install dependencies backend
-! composer install
-
-# Install dependencies frontend (Filament assets)
-! npm install
-! npm run dev
-
-# Copy environment file
-! cp .env.example .env
-
-# Generate key aplikasi
-! php artisan key:generate
-
-# Edit file .env
-DB_DATABASE=belajar_mabrur
-DB_USERNAME=root
-DB_PASSWORD=
-
-APP_TIMEZONE=Asia/Jakarta
-SESSION_LIFETIME=30
-API_KEY="your_api_key"
-
-# Jalankan migrasi dan seeder
-! php artisan migrate --seed
-
-# Link storage untuk file media
-! php artisan storage:link
-
-# Jalankan server lokal
-! php artisan serve
-
-
-
+Admin dashboard includes:
+- 📈 User Growth (7/30/365 days)
+- 🔥 Daily Active Users (DAU)
+- 📊 Weekly/Monthly Active Users (WAU/MAU)
+- 👥 Total Registered Users
+- 🕌 Islamic content overview
+- 🔧 User management tools
 
 ---
 
-``
-# 🖥️ Filament Admin Dashboard
+# 👥 Dump Users (Seeder)
 
-``
-# Main dashboard URL
-http://localhost:8000/admin
+The system includes default seeded users:
 
+| Role  | Username | Password  |
+|-------|----------|-----------|
+| Admin | `` admin `` | `` 12345678 `` |
+| Host  | `` host ``  | `` 12345678 `` |
+| User  | `` user ``  | `` 12345678 `` |
 
-username = "admin"
-password = "12345678"
-
-Dashboard menyediakan:
-📈 User Growth (7 / 30 / 365 hari)
-🔥 User Active (DAU / WAU / MAU)
-👥 Total Registered Users
-📊 Activity Log
-📘 Content Overview
-
+These accounts are created automatically using database seeders.
 
 ---
 
-``
-# 🔑 API Authentication
-
-Semua request API menggunakan header berikut:
-
-``
-headers = {
-    "X-API-KEY": "your_api_key",
-    "Accept": "application/json"
-}
-
-POST /api/login
-
-payload = {
-    "username": "admin",
-    "password": "12345678"
-}
-
-Authorization: Bearer {token}
-
-
-
----
-
-``
 # 📂 Project Structure
 
-``
 belajar_mabrur_BE_v2/
 │
 ├── app/
-│   ├── Filament/
-│   │   ├── Widgets/       # Dashboard widgets (growth, active)
-│   │   ├── Pages/         # Dashboard page
-│   ├── Http/
-│   │   ├── Controllers/API
-│   ├── Models/
-│   │   ├── UserDailyActivity.py
+│ ├── Filament/
+│ │ ├── Widgets/ # Analytics & dashboard widgets
+│ │ ├── Pages/ # Dashboard main page
+│ ├── Http/
+│ │ ├── Controllers/API # User, Auth, Content APIs
+│ ├── Models/
+│ ├── User.php
+│ ├── UserDailyActivity.php
 │
 ├── database/
-│   ├── migrations/
-│   ├── seeders/
-│   ├── data/              # JSON content (Ihram, Sai, Tawaf, Tahallul)
+│ ├── migrations/ # Table schema definitions
+│ ├── seeders/ # Content + user seeders
+│ ├── data/ # JSON content sources
 │
 ├── routes/
-│   ├── api.php
-│   ├── web.php
+│ ├── api.php # API routes
+│ ├── web.php # Web routes
+│
+├── public/
+├── resources/
+├── storage/
+└── README.md
 
-``
+
+---
+
+# ©️ License & Copyright
+
+Belajar Mabrur BE v2 is an internal project developed for  
+**Belajar Mabrur Educational Platform**.
+
+All rights reserved.  
+Unauthorized copying, modification, or distribution of this software  
+is strictly prohibited without written permission.
+
+© 2025 Belajar Mabrur — All Rights Reserved.
+
