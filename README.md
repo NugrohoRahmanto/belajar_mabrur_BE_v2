@@ -13,12 +13,12 @@ Aplikasi backend modern menggunakan **Laravel 10**, **Filament 3**, dan **API To
 # 🔧 Requirements
 
 ## Minimum system requirements
-`` PHP >= 8.1 ``
-`` Composer ``
-`` Node.js + NPM / Yarn ``
-`` MySQL / MariaDB ``
-`` Git ``
-`` Web Server (Apache / Nginx / Laravel Sail / Valet) ``
+- `` PHP >= 8.1 ``
+- `` Composer ``
+- `` Node.js + NPM / Yarn ``
+- `` MySQL / MariaDB ``
+- `` Git ``
+- `` Web Server (Apache / Nginx / Laravel Sail / Valet) ``
 
 
 
