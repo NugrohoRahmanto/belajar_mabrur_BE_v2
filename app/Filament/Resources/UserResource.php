@@ -26,50 +26,71 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+
+                Forms\Components\TextInput::make('username')
+                    ->required()
+                    ->maxLength(255),
+
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\DateTimePicker::make('email_verified_at'),
+
                 Forms\Components\TextInput::make('password')
                     ->password()
-                    ->required()
-                    ->maxLength(255),
+                    ->dehydrateStateUsing(fn ($state) => !empty($state) ? bcrypt($state) : null)
+                    ->dehydrated(fn ($state) => filled($state))
+                    ->maxLength(255)
+                    ->label('Password')
+                    ->nullable(),
+
+                Forms\Components\Select::make('role')
+                    ->options([
+                        'admin' => 'Admin',
+                        'host' => 'Host',
+                        'user' => 'User',
+                    ])
+                    ->required(),
+
+                Forms\Components\TextInput::make('token')
+                    ->maxLength(255)
+                    ->nullable(),
+
+                Forms\Components\DateTimePicker::make('token_expires_at')
+                    ->label('Token Expiration')
+                    ->nullable()
+                    ->disabled(),
+
+                Forms\Components\DateTimePicker::make('last_active_at')
+                    ->label('Last Active')
+                    ->nullable()
+                    ->disabled(),
             ]);
     }
+
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('email')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('username')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('email')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('role')->sortable(),
+                Tables\Columns\TextColumn::make('token')->limit(20),
+                Tables\Columns\TextColumn::make('token_expires_at')->dateTime(),
+                Tables\Columns\TextColumn::make('last_active_at')->dateTime(),
+                Tables\Columns\TextColumn::make('created_at')->dateTime(),
             ])
-            ->filters([
-                //
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
+
 
     public static function getRelations(): array
     {
