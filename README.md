@@ -29,7 +29,7 @@ It provides:
 
 # 🚀 Local Installation
 
-- run `` git clone https://github.com/AbiyaMakruf/belajar_mabrur_BE_v2.git ``
+- run `` git clone https://github.com/NugrohoRahmanto/belajar_mabrur_BE_v2.git ``
 - run `` cd belajar_mabrur_BE_v2 ``
 - run `` composer install ``  
 - run `` npm install ``  
