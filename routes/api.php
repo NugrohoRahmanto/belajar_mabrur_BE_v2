@@ -20,13 +20,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('api.key')->get('/test', function () {
+Route::middleware(['api.key', 'resolve.group'])->get('/test', function () {
     return response()->json([
         'message' => 'API Key Accepted'
     ]);
 });
 
-Route::middleware('api.key')->group(function () {
+Route::middleware(['api.key', 'resolve.group'])->group(function () {
     Route::get('/content', [\App\Http\Controllers\API\ContentController::class, 'index']);
     Route::get('/content/category', [\App\Http\Controllers\API\ContentController::class, 'byCategory']);
 

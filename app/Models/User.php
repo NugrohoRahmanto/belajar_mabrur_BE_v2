@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -23,6 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'group_id',
         'token',
         'token_expires_at',
         'last_active_at',
@@ -36,6 +38,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'group_id',
     ];
 
     /**
@@ -81,6 +84,16 @@ class User extends Authenticatable
         $this->save();
 
         return $token;
+    }
+
+    public function scopeForGroup(Builder $query, string $groupId)
+    {
+        return $query->where('group_id', $groupId);
+    }
+
+    public function hostGroup()
+    {
+        return $this->belongsTo(HostGroup::class, 'group_id', 'group_id');
     }
 
     public function dailyActivities()

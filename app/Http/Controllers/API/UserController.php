@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -54,7 +55,14 @@ class UserController extends Controller
 
         $request->validate([
             'name'     => 'nullable|string|max:255',
-            'username' => 'nullable|string|max:100|unique:users,username,' . $user->id,
+            'username' => [
+                'nullable',
+                'string',
+                'max:100',
+                Rule::unique('users', 'username')
+                    ->ignore($user->id)
+                    ->where(fn ($query) => $query->where('group_id', $user->group_id)),
+            ],
         ]);
 
         $user->update([
@@ -129,10 +137,14 @@ class UserController extends Controller
             ], 403);
         }
 
+        $groupId = $this->requestGroupId($request) ?? 'default';
+
         return response()->json([
             'code' => 200,
             'status' => 'OK',
-            'data' => User::select('id','username','name','role','last_active_at')->get()
+            'data' => User::forGroup($groupId)
+                ->select('id','username','name','role','last_active_at')
+                ->get()
         ]);
     }
 
@@ -166,9 +178,27 @@ class UserController extends Controller
 
         if (!$token) return null;
 
-        $user = User::where('token', $token)->first();
+        $groupId = $this->requestGroupId($request);
+
+        $query = User::where('token', $token);
+
+        if ($groupId) {
+            $query->forGroup($groupId);
+        }
+
+        $user = $query->first();
+
+        if (!$user) {
+            $user = User::where('token', $token)->first();
+
+            if ($user) {
+                $this->alignRequestGroupWithUser($request, $user);
+            }
+        }
 
         if (!$user || !$user->isTokenValid()) return null;
+
+        $this->alignRequestGroupWithUser($request, $user);
 
         return $user;
     }

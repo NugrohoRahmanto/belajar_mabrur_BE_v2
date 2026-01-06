@@ -14,7 +14,9 @@ class ContentController extends Controller
      */
     public function index(Request $request)
     {
-        $contents = Content::all();
+        $groupId = $this->requestGroupId($request) ?? 'default';
+
+        $contents = Content::forGroup($groupId)->get();
 
         return response()->json([
             'code' => 200,
@@ -31,6 +33,7 @@ class ContentController extends Controller
     public function byCategory(Request $request)
     {
         $category = $request->query('category');
+        $groupId = $this->requestGroupId($request) ?? 'default';
 
         if (!$category) {
             return response()->json([
@@ -40,7 +43,9 @@ class ContentController extends Controller
             ], 400);
         }
 
-        $contents = Content::where('category', $category)->get();
+        $contents = Content::forGroup($groupId)
+            ->where('category', $category)
+            ->get();
 
         if ($contents->isEmpty()) {
             return response()->json([

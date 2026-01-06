@@ -4,11 +4,13 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
+use App\Models\HostGroup;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -52,19 +54,11 @@ class UserResource extends Resource
                     ])
                     ->required(),
 
-                Forms\Components\TextInput::make('token')
-                    ->maxLength(255)
-                    ->nullable(),
-
-                Forms\Components\DateTimePicker::make('token_expires_at')
-                    ->label('Token Expiration')
-                    ->nullable()
-                    ->disabled(),
-
-                Forms\Components\DateTimePicker::make('last_active_at')
-                    ->label('Last Active')
-                    ->nullable()
-                    ->disabled(),
+                Forms\Components\Select::make('group_id')
+                    ->label('Group')
+                    ->options(fn () => HostGroup::orderBy('name')->pluck('name', 'group_id'))
+                    ->searchable()
+                    ->required(),
             ]);
     }
 
@@ -77,12 +71,20 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('username')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('email')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('role')->sortable(),
+                Tables\Columns\TextColumn::make('group_id')
+                    ->label('Group')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('token')->limit(20),
                 Tables\Columns\TextColumn::make('token_expires_at')->dateTime(),
                 Tables\Columns\TextColumn::make('last_active_at')->dateTime(),
                 Tables\Columns\TextColumn::make('created_at')->dateTime(),
             ])
-            ->filters([])
+            ->filters([
+                SelectFilter::make('group_id')
+                    ->label('Group')
+                    ->options(fn () => HostGroup::orderBy('name')->pluck('name', 'group_id')),
+            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])

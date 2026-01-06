@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
@@ -15,8 +16,15 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
+        $groupId = $this->requestGroupId($request) ?? 'default';
+
         $request->validate([
-            'username' => 'required|string|max:100|unique:users,username',
+            'username' => [
+                'required',
+                'string',
+                'max:100',
+                Rule::unique('users', 'username')->where(fn ($query) => $query->where('group_id', $groupId)),
+            ],
             'password' => 'required|string|min:6',
             'name'     => 'nullable|string|max:255',
             'role'     => 'nullable|in:admin,host,user',
@@ -27,6 +35,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'name'     => $request->name ?? '',
             'role'     => $request->role ?? 'user',
+            'group_id' => $groupId,
         ]);
 
         return response()->json([
@@ -52,7 +61,21 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
-        $user = User::where('username', $request->username)->first();
+        $groupId = $this->requestGroupId($request);
+
+        $user = User::query()
+            ->when($groupId, fn ($query) => $query->forGroup($groupId))
+            ->where('username', $request->username)
+            ->first();
+
+        if (!$user) {
+            $user = User::where('username', $request->username)->first();
+
+            if ($user) {
+                $this->alignRequestGroupWithUser($request, $user);
+                $groupId = $user->group_id;
+            }
+        }
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
@@ -70,6 +93,8 @@ class AuthController extends Controller
 
         $user->logDailyActivity();
 
+        $this->alignRequestGroupWithUser($request, $user);
+
         return response()->json([
             'code'  => 200,
             'status'=> 'OK',
@@ -82,6 +107,7 @@ class AuthController extends Controller
                     'username' => $user->username,
                     'name'     => $user->name,
                     'role'     => $user->role,
+                    'group_id' => $user->group_id,
                 ]
             ]
         ]);
@@ -105,7 +131,7 @@ class AuthController extends Controller
 
         // update last activity / tracking
         $user->markActive();
-        $user->logDailyActivity(); 
+        $user->logDailyActivity();
 
         return response()->json([
             'code'  => 200,
@@ -115,6 +141,7 @@ class AuthController extends Controller
                 'username' => $user->username,
                 'name'     => $user->name,
                 'role'     => $user->role,
+                'group_id' => $user->group_id,
                 'token_expires_at' => optional($user->token_expires_at)->toDateTimeString(),
             ]
         ]);
@@ -177,7 +204,23 @@ class AuthController extends Controller
 
         if (!$token) return null;
 
-        $user = User::where('token', $token)->first();
+        $groupId = $this->requestGroupId($request);
+
+        $query = User::where('token', $token);
+
+        if ($groupId) {
+            $query->forGroup($groupId);
+        }
+
+        $user = $query->first();
+
+        if (!$user) {
+            $user = User::where('token', $token)->first();
+
+            if ($user) {
+                $this->alignRequestGroupWithUser($request, $user);
+            }
+        }
 
         if (!$user) return null;
 
