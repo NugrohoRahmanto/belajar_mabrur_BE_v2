@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\HostGroup;
 use App\Models\User;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
@@ -30,6 +31,13 @@ class ActiveUsersWidget extends BaseWidget
             )
                 ->description('Logged in or active today')
                 ->color('info'),
+
+            Stat::make(
+                'Active Groups',
+                HostGroup::where('is_active', true)->count()
+            )
+                ->description('Tenants currently enabled')
+                ->color('warning'),
         ];
     }
 }

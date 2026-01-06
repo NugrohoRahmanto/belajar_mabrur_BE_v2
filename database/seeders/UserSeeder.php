@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
             'email'    => 'admin@belajarmabrur.com',
             'name'     => 'Super Admin',
             'role'     => 'admin',
+            'group_id' => 'default',
         ]);
 
         // Host, untuk room di Android
@@ -25,6 +26,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'name'     => 'Default Host',
             'role'     => 'host',
+            'group_id' => 'default',
         ]);
 
         // User biasa
@@ -33,6 +35,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'name'     => 'Regular User',
             'role'     => 'user',
+            'group_id' => 'default',
         ]);
     }
 }

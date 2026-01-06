@@ -25,6 +25,7 @@ class ContentSeeder extends Seeder
                 Content::create([
                     'name'         => $item['name'],
                     'category'     => $item['category'],
+                    'group_id'     => 'default',
                     'arabic'       => $item['arabic'] ?? null,
                     'latin'        => $item['latin'] ?? null,
                     'translate_id' => $item['translate_id'] ?? null,
