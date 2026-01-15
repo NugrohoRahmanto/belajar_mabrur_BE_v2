@@ -26,16 +26,16 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required()
+                    ->required(fn (string $context): bool => $context === 'create')
                     ->maxLength(255),
 
                 Forms\Components\TextInput::make('username')
-                    ->required()
+                    ->required(fn (string $context): bool => $context === 'create')
                     ->maxLength(255),
 
                 Forms\Components\TextInput::make('email')
                     ->email()
-                    ->required()
+                    ->required(fn (string $context): bool => $context === 'create')
                     ->maxLength(255),
 
                 Forms\Components\TextInput::make('password')
@@ -47,18 +47,15 @@ class UserResource extends Resource
                     ->nullable(),
 
                 Forms\Components\Select::make('role')
-                    ->options([
-                        'admin' => 'Admin',
-                        'host' => 'Host',
-                        'user' => 'User',
-                    ])
-                    ->required(),
+                    ->options(fn () => static::roleOptions())
+                    ->required(fn (string $context): bool => $context === 'create'),
 
                 Forms\Components\Select::make('group_id')
                     ->label('Group')
-                    ->options(fn () => HostGroup::orderBy('name')->pluck('name', 'group_id'))
+                    ->options(fn () => static::groupOptions())
                     ->searchable()
-                    ->required(),
+                    ->preload()
+                    ->required(fn (string $context): bool => $context === 'create'),
             ]);
     }
 
@@ -83,10 +80,39 @@ class UserResource extends Resource
             ->filters([
                 SelectFilter::make('group_id')
                     ->label('Group')
-                    ->options(fn () => HostGroup::orderBy('name')->pluck('name', 'group_id')),
+                    ->options(fn () => static::groupOptions()),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make('edit_all')
+                    ->label('Edit All'),
+                Tables\Actions\Action::make('edit_group')
+                    ->label('Edit Group')
+                    ->icon('heroicon-o-rectangle-stack')
+                    ->modalHeading('Update Group')
+                    ->modalSubmitActionLabel('Save Group')
+                    ->form([
+                        Forms\Components\Select::make('group_id')
+                            ->label('Group')
+                            ->options(fn () => static::groupOptions())
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                    ])
+                    ->action(fn (User $record, array $data) => $record->update(['group_id' => $data['group_id']]))
+                    ->successNotificationTitle('Group updated'),
+                Tables\Actions\Action::make('edit_role')
+                    ->label('Edit Role')
+                    ->icon('heroicon-o-adjustments-vertical')
+                    ->modalHeading('Update Role')
+                    ->modalSubmitActionLabel('Save Role')
+                    ->form([
+                        Forms\Components\Select::make('role')
+                            ->label('Role')
+                            ->options(fn () => static::roleOptions())
+                            ->required(),
+                    ])
+                    ->action(fn (User $record, array $data) => $record->update(['role' => $data['role']]))
+                    ->successNotificationTitle('Role updated'),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -107,6 +133,20 @@ class UserResource extends Resource
             'index' => Pages\ListUsers::route('/'),
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
+        ];
+    }
+
+    protected static function groupOptions(): array
+    {
+        return HostGroup::query()->orderBy('name')->pluck('name', 'group_id')->all();
+    }
+
+    protected static function roleOptions(): array
+    {
+        return [
+            'admin' => 'Admin',
+            'host' => 'Host',
+            'user' => 'User',
         ];
     }
 }
