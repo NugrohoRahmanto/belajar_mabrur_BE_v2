@@ -41,6 +41,7 @@ Route::middleware(['api.key', 'resolve.group'])->group(function () {
     Route::put('/user/password', [UserController::class, 'updatePassword']);
 
     // Only admin
+    Route::post('/user', [UserController::class, 'store']);
     Route::get('/user/all', [UserController::class, 'allUsers']);
 });
 
