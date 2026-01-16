@@ -150,6 +150,69 @@ class UserController extends Controller
 
 
     /**
+     * POST: /api/user
+     * Admin only: create a new user with optional role & group assignment
+     */
+    public function store(Request $request)
+    {
+        $currentUser = $this->findUser($request);
+
+        if (!$currentUser || $currentUser->role !== 'admin') {
+            return response()->json([
+                'code' => 403,
+                'status' => 'Forbidden',
+                'message' => 'Only admin can access'
+            ], 403);
+        }
+
+        $defaultGroupId = $this->requestGroupId($request) ?? 'default';
+        $requestedGroupId = $request->filled('group_id') ? $request->input('group_id') : null;
+        $targetGroupId = $requestedGroupId ?? $defaultGroupId;
+
+        $validated = $request->validate([
+            'username' => [
+                'required',
+                'string',
+                'max:100',
+                Rule::unique('users', 'username')
+                    ->where(fn ($query) => $query->where('group_id', $targetGroupId)),
+            ],
+            'password' => 'required|string|min:6',
+            'name'     => 'nullable|string|max:255',
+            'role'     => 'nullable|in:admin,host,user',
+            'group_id' => [
+                'nullable',
+                'string',
+                'max:100',
+                Rule::exists('host_groups', 'group_id'),
+            ],
+        ]);
+
+        $groupId = $validated['group_id'] ?? $targetGroupId;
+
+        $newUser = User::create([
+            'username' => $validated['username'],
+            'password' => Hash::make($validated['password']),
+            'name'     => $validated['name'] ?? '',
+            'role'     => $validated['role'] ?? 'user',
+            'group_id' => $groupId,
+        ]);
+
+        return response()->json([
+            'code' => 201,
+            'status' => 'Created',
+            'data' => [
+                'id'       => $newUser->id,
+                'username' => $newUser->username,
+                'name'     => $newUser->name,
+                'role'     => $newUser->role,
+                'group_id' => $newUser->group_id,
+            ]
+        ], 201);
+    }
+
+
+    /**
      * ===== Helper =====
      */
 
