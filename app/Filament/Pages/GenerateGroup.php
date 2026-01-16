@@ -63,29 +63,33 @@ class GenerateGroup extends Page implements HasForms
                         Forms\Components\TextInput::make('host_count')
                             ->label('Number of Hosts')
                             ->numeric()
-                            ->minValue(1)
-                            ->default(1)
+                            ->minValue(0)
+                            ->default(0)
+                            ->helperText('Set 0 when you want to add host accounts manually later.')
                             ->required(),
                         Forms\Components\TextInput::make('host_password')
                             ->label('Host Password')
                             ->password()
                             ->revealable()
                             ->minLength(6)
-                            ->required(),
+                            ->nullable()
+                            ->required(fn (callable $get) => (int) $get('host_count') > 0),
                     ]),
                     Grid::make(2)->schema([
                         Forms\Components\TextInput::make('user_count')
                             ->label('Number of Users')
                             ->numeric()
-                            ->minValue(1)
-                            ->default(1)
+                            ->minValue(0)
+                            ->default(0)
+                            ->helperText('Set 0 when you plan to create user accounts manually.')
                             ->required(),
                         Forms\Components\TextInput::make('user_password')
                             ->label('User Password')
                             ->password()
                             ->revealable()
                             ->minLength(6)
-                            ->required(),
+                            ->nullable()
+                            ->required(fn (callable $get) => (int) $get('user_count') > 0),
                     ]),
                 ]),
 
@@ -135,8 +139,8 @@ class GenerateGroup extends Page implements HasForms
             'description'       => null,
             'copy_contents'     => true,
             'template_group_id' => HostGroup::default()?->group_id,
-            'host_count'        => 1,
-            'user_count'        => 1,
+            'host_count'        => 0,
+            'user_count'        => 0,
             'host_password'     => null,
             'user_password'     => null,
         ];
